@@ -142,11 +142,11 @@ bool BST::remove(int val)
 
         node* child;
 
-        if (toRemove->left != NULL) {
+        if (toRemove->left) {
             child = toRemove->left;
-        } else if (toRemove->right != NULL) {
+        } else if (toRemove->right) {
             child = toRemove->right;
-        } else return false;
+        }
 
         node* parent = toRemove->parent;
 
@@ -159,7 +159,6 @@ bool BST::remove(int val)
             parent->right = child;
         }
         delete toRemove;
-
         return true;
     }
     return false;
