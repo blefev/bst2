@@ -12,6 +12,8 @@ struct node{
     node* right = NULL;
 };
 
+enum side {left, right};
+
 // NOTE! This implementation ignores duplicates, and does
 // not insert them into the list at all.
 class BST{
@@ -29,6 +31,8 @@ public:
 
 private:
     node * root;
+
+    node* findHelper(node*, side direction);
 
     int findHeightHelper(node*, int);
     void inorder_helper(node*);
