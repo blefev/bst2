@@ -25,6 +25,7 @@ void BST::insert_helper(int val, node *cur, node *newNode)
 	if(val < cur->val) {
 		if(!cur->left) {
             newNode->parent = cur;
+            newNode->from = LEFT;
 			cur->left = newNode;
 			return;
 		}
@@ -32,6 +33,7 @@ void BST::insert_helper(int val, node *cur, node *newNode)
 	} else if (val > cur->val) {
 		if(!cur->right) {
             newNode->parent = cur;
+            newNode->from = RIGHT;
 			cur->right = newNode;
 			return;
 		}
@@ -117,12 +119,14 @@ bool BST::remove(int val)
 {
     node* toRemove = this->search(val);
 
-    if (!toRemove->left && !toRemove->right) return true;
+    if (!toRemove->left && !toRemove->right) {
+       // Node has no children. Can simply remove and dereference 
+    }
 }
 
 bool BST::removeHelper(node* cur)
 {
-    
+
 }
 
 node* BST::findMin()

@@ -4,16 +4,18 @@
 // include this library to use NULL, otherwise use nullptr instead
 #include <cstddef>
 #include <iostream>
+#define LEFT 0
+#define RIGHT 1
 
 /* Struct which will be the building block of our list */
 struct node{
 	int val;
     node* parent;
+    int from; //Tell if node is left or right child
 	node* left;
     node* right;
 };
 
-enum side {left, right};
 
 // NOTE! This implementation ignores duplicates, and does
 // not insert them into the list at all.
