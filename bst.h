@@ -8,8 +8,9 @@
 /* Struct which will be the building block of our list */
 struct node{
 	int val;
-	node* left = NULL;
-    node* right = NULL;
+    node* parent;
+	node* left;
+    node* right;
 };
 
 enum side {left, right};
@@ -34,6 +35,7 @@ private:
 
     node* findMinHelper(node*);
     node* findMaxHelper(node*);
+    bool removeHelper(node*);
 
     int findHeightHelper(node*, int);
     void inorder_helper(node*);
