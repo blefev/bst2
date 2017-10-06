@@ -133,6 +133,8 @@ int BST::findHeight()
 
 int BST::findHeightHelper(node* cur, int height)
 {
+    if (!cur) return 0;
+
     int leftHeight = findHeightHelper(cur->left, height) + height + 1;
     int rightHeight = findHeightHelper(cur->right, height) + height + 1;
 
