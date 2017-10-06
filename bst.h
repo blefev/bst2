@@ -10,10 +10,10 @@
 /* Struct which will be the building block of our list */
 struct node{
 	int val;
-    node* parent;
+    node* parent = NULL;
     int from; //Tell if node is left or right child
-	node* left;
-    node* right;
+	node* left = NULL;
+    node* right = NULL;
 };
 
 

@@ -119,14 +119,50 @@ bool BST::remove(int val)
 {
     node* toRemove = this->search(val);
 
-    if (!toRemove->left && !toRemove->right) {
-       // Node has no children. Can simply remove and dereference
-        if (toRemove->from == LEFT) {
-            toRemove->parent->left = NULL;
-        } else if (toRemove->from == RIGHT) {
-            toRemove->parent->right = NULL;
-        }
+    if (toRemove->left && toRemove->right) {
+        // Has two children, recurse with helper
+        this->removeHelper(toRemove);
     }
+
+
+    if (!toRemove->left && !toRemove->right) {
+        node* parent = toRemove->parent;
+
+        if (toRemove->from == LEFT) {
+            parent->left = NULL;
+        } else if (toRemove->from == RIGHT) {
+            parent->right = NULL;
+        }
+        delete toRemove;
+        return true;
+    }
+
+    // Node has one child
+    if(!toRemove->left ^ !toRemove->right) {
+
+        node* child;
+
+        if (toRemove->left != NULL) {
+            child = toRemove->left;
+        } else if (toRemove->right != NULL) {
+            child = toRemove->right;
+        } else return false;
+
+        node* parent = toRemove->parent;
+
+        child->parent = parent;
+
+        // Now we set the parent pointer to the child
+        if (toRemove->from == LEFT) {
+            parent->left = child;
+        } else if (toRemove->from == RIGHT) {
+            parent->right = child;
+        }
+        delete toRemove;
+
+        return true;
+    }
+    return false;
 }
 
 bool BST::removeHelper(node* cur)
