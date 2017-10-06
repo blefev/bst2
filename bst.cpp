@@ -14,6 +14,7 @@ void BST::insert(int val)
 
 	if (!this->root) {
 		this->root = newNode;
+        newNode->parent = this->root;
 		return;
 	}
 
@@ -109,7 +110,11 @@ node* BST::search_helper(int val, node *cur)
 		return cur;
 	} else if (val < cur->val) {
 		return this->search_helper(val, cur->left);
+        cout << "Search val < cur";
+        if (!cur->left) return NULL;
 	} else if (val > cur->val) {
+        if (!cur->right) return NULL;
+        cout << "Search val > cur";
 		return this->search_helper(val, cur->right);
 	}
 	return NULL;
@@ -118,6 +123,9 @@ node* BST::search_helper(int val, node *cur)
 bool BST::remove(int val)
 {
     node* toRemove = this->search(val);
+    if (!toRemove) {
+        return false;
+    }
 
     if (toRemove->left && toRemove->right) {
         node* rep = this->findMinHelper(toRemove->left);
