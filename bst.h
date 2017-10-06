@@ -32,7 +32,8 @@ public:
 private:
     node * root;
 
-    node* findHelper(node*, side direction);
+    node* findMinHelper(node*);
+    node* findMaxHelper(node*);
 
     int findHeightHelper(node*, int);
     void inorder_helper(node*);

@@ -118,12 +118,26 @@ bool BST::remove(int val)
 
 node* BST::findMin()
 {
-
+    return findMinHelper(this->root);
 }
 
 node* BST::findMax()
 {
+    return findMaxHelper(this->root);
+}
 
+node* BST::findMinHelper(node* cur)
+{
+    if (!cur->left) return cur;
+
+    return findMinHelper(cur->left);
+}
+
+node* BST::findMaxHelper(node* cur)
+{
+    if (!cur->right) return cur;
+
+    return findMaxHelper(cur->right);
 }
 
 int BST::findHeight()
