@@ -120,7 +120,12 @@ bool BST::remove(int val)
     node* toRemove = this->search(val);
 
     if (!toRemove->left && !toRemove->right) {
-       // Node has no children. Can simply remove and dereference 
+       // Node has no children. Can simply remove and dereference
+        if (toRemove->from == LEFT) {
+            toRemove->parent->left = NULL;
+        } else if (toRemove->from == RIGHT) {
+            toRemove->parent->right = NULL;
+        }
     }
 }
 
