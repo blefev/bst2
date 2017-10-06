@@ -37,7 +37,6 @@ private:
 
     node* findMinHelper(node*);
     node* findMaxHelper(node*);
-    bool removeHelper(node*);
 
     int findHeightHelper(node*, int);
     void inorder_helper(node*);

@@ -120,8 +120,18 @@ bool BST::remove(int val)
     node* toRemove = this->search(val);
 
     if (toRemove->left && toRemove->right) {
-        // Has two children, recurse with helper
-        this->removeHelper(toRemove);
+        node* rep = this->findMinHelper(toRemove->left);
+
+        if(toRemove->from == LEFT) {
+            toRemove->parent->left = rep;
+        } else if (toRemove->from == RIGHT) {
+            toRemove->parent->right = rep;
+        } else return false;
+
+        rep->parent = toRemove->parent;
+
+        delete toRemove;
+        return true;
     }
 
 
@@ -162,11 +172,6 @@ bool BST::remove(int val)
         return true;
     }
     return false;
-}
-
-bool BST::removeHelper(node* cur)
-{
-
 }
 
 node* BST::findMin()
