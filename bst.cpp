@@ -14,7 +14,6 @@ void BST::insert(int val)
 
 	if (!this->root) {
 		this->root = newNode;
-        newNode->parent = this->root;
 		return;
 	}
 
@@ -123,8 +122,13 @@ node* BST::search_helper(int val, node *cur)
 bool BST::remove(int val)
 {
     node* toRemove = this->search(val);
+
     if (!toRemove) {
         return false;
+    }
+
+    if (!toRemove->parent) {
+        // To remove is root node
     }
 
     if (toRemove->left && toRemove->right) {
